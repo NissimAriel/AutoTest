@@ -12,18 +12,14 @@ const { AssetPersonalDetais } = require("../pages.js/AssetPersonaldetalsPage");
 const { Util } = require("../fixtures/Utils");
 
 
+test('Login to system', async ({ page }) => {
 
-test.beforeEach(async ({ page }) => {
   const globals = new Globals(page);
   
   await page.goto(Globals.pageURL);
   
   await globals.performLoginActions(Util.User_Details.name, 
     Util.User_Details.password);
-  
-});
-
-test('Login to system', async ({ page }) => {
  
   const register = new RegisterPage(page);
 
