@@ -9,7 +9,7 @@ exports.Register = class Register {
     this.nameField = page.locator('#user-d21758b');
     this.passwordField = page.locator('#password-d21758b');
     this.signUpBtn = page.locator("button[type='submit'][name='wp-submit'].elementor-button span.elementor-button-text");
-    this.disconnectBtn = page.locator('div[data-id="0b8fbbd"] span.elementor-button-text');
+    this.disconnectBtn = page.locator('div[data-id="0b8fbbd"] span.elementor-button-text').nth(0);
   }
 
   

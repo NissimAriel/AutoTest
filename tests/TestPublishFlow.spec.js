@@ -12,7 +12,7 @@ const { AssetPersonalDetais } = require("../pages.js/AssetPersonaldetalsPage");
 const { Utils } = require("../fixtures/Utils");
 
 
-test('Login to system', async ({ page }) => {
+test.only('Login to system', async ({ page }) => {
   
   const login = new Login(page);
   const register = new Register(page);
@@ -31,7 +31,7 @@ test('Login to system', async ({ page }) => {
 
 });
 
-test.only('Publish add', async ({page}) => {
+test('Publish add', async ({page}) => {
 
 
   const personal = new PersonalPage(page);
@@ -59,34 +59,34 @@ test.only('Publish add', async ({page}) => {
   await assetLoc.nextBtn1();
   
   //Asset area
-  await assetArea.insertFloor('0');
-  await assetArea.insertRooms("4.5");
-  await assetArea.insertParkings("1");
-  await assetArea.isElavator("ללא");
-  await assetArea.floorsNum("1");
-  await assetArea.terracesNum("2");
-  await assetArea.insertBuildArea("120");
-  await assetArea.insetGadenarea("50");
+  await assetArea.insertFloor(Utils.Asset_Area.floor);
+  await assetArea.insertRooms(Utils.Asset_Area.rooms);
+  await assetArea.insertParkings(Utils.Asset_Area.parkings);
+  await assetArea.isElavator(Utils.Asset_Area.elavator);
+  await assetArea.floorsNum(Utils.Asset_Area.floors);
+  await assetArea.terracesNum(Utils.Asset_Area.terraces);
+  await assetArea.insertBuildArea(Utils.Asset_Area.area);
+  await assetArea.insetGadenarea(Utils.Asset_Area.gardenArea);
   await assetArea.nextBtn2();
   
   //Asset features
-  await assetFeatures.pickFeature(["מיזוג", "מחסן"]);
-  await assetFeatures.fillDescription("Butiful appartment");
+  await assetFeatures.pickFeature(Utils.Asset_Features.features);
+  await assetFeatures.fillDescription(Utils.Asset_Features.description);
   await assetFeatures.featureNext();
   await page.waitForLoadState('networkidle');
   
   //Asset payments
-  await assetPayments.pickPrice('7000');
-  await assetPayments.pickPaymentNum('10');
-  await assetPayments.insertHC('100');
-  await assetPayments.insertTaxes('200');
-  await assetPayments.selectMonth("November");
+  await assetPayments.pickPrice(Utils.Asset_Payments.price);
+  await assetPayments.pickPaymentNum(Utils.Asset_Payments.payments);
+  await assetPayments.insertHC(Utils.Asset_Payments.houseCommette);
+  await assetPayments.insertTaxes(Utils.Asset_Payments.taxes);
+  await assetPayments.selectMonth(Utils.Asset_Payments.month);
   await assetPayments.setDay();
   await assetPayments.nextBtnToPic();
   
   //Uploaling picture
-  // await assePic.uploadPicture();
-  // await page.pause();
+  await assePic.uploadPicture(Utils.Asset_Picture.path);
+  await page.pause();
 
   // //Personal details
   // await assetPersonalDetais.insertName('Nissim Ariel');

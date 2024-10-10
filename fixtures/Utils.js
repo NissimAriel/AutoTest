@@ -16,6 +16,7 @@ const Utils = {
 
     Asset_Area: {
         floor: "0",
+        floors: "3",
         rooms: "4.5",
         parkings: "1",
         elavator: "ללא",
@@ -30,13 +31,18 @@ const Utils = {
         description: "buftiful appartment"
     },
 
-    asset_Payments: {
+    Asset_Payments: {
         price: "7000",
         payments: "10",
         houseCommette: "100",
         taxes: "200",
         month: "November",
     },
+
+    Asset_Picture: {
+        path: "/Users/nissimariel/Desktop/house.png"
+    },
+    
 
 
 

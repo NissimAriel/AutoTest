@@ -10,9 +10,9 @@ exports.AssetPic = class AssetPic{
     }
 
 
-    async uploadPicture(){
+    async uploadPicture(value){
 
-        await this.uploadBtn.setInputFiles("/Users/nissimariel/Desktop/house.png");
+        await this.uploadBtn.setInputFiles(value);
         await this.nxtToPDetails.click();
 
     }
