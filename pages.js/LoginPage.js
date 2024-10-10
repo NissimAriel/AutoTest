@@ -1,14 +1,7 @@
- exports.Globals = class Globals {
+const { expect } = require("@playwright/test");
+ 
+ exports.Login = class Login {
         
-    static pageURL =  'https://homme.co.il/';
-
-    //new mail credentials
-    static newUserEmail = "Na260438@gmail.com";
-    static newUserPassword = "Na260438!";
-    static newUserName = "Nissim Ariel";
-    static userPassword = "tester123!@#qwe";
-    static userName = "tester";
-
 
     constructor(page) {
         this.page = page;

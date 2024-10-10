@@ -27,7 +27,7 @@ exports.AssetPayments = class AssetPayments {
     await this.houseCommitte.fill(value);
   }
 
-  async insertTaxs(value) {
+  async insertTaxes(value) {
     await this.taxs.fill(value);
   }
 

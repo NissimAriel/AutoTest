@@ -1,7 +1,7 @@
 // @ts-check
 const { test, expect } = require("@playwright/test");
-const { RegisterPage } = require("../pages.js/SignupPage");
-const { Globals } = require("../pages.js/GlobalsUtils");
+const { Login } = require("../pages.js/LoginPage");
+const { Register } = require("../pages.js/SignupPage");
 const { PersonalPage } = require("../pages.js/PersonalPage");
 const { AssetLocation } = require("../pages.js/AssetLocationPage");
 const { AssetArea } = require("../pages.js/AssetAreaPage");
@@ -9,23 +9,24 @@ const { AssetFeatures } = require("../pages.js/AssetFeaturesPage");
 const { AssetPayments } = require("../pages.js/AssetPaymentsPage");
 const { AssetPic } = require("../pages.js/AssetPicPage");
 const { AssetPersonalDetais } = require("../pages.js/AssetPersonaldetalsPage");
-const { Util } = require("../fixtures/Utils");
+const { Utils } = require("../fixtures/Utils");
 
 
 test('Login to system', async ({ page }) => {
+  
+  const login = new Login(page);
+  const register = new Register(page);
 
-  const globals = new Globals(page);
-  
-  await page.goto(Globals.pageURL);
-  
-  await globals.performLoginActions(Util.User_Details.name, 
-    Util.User_Details.password);
- 
-  const register = new RegisterPage(page);
+
+  //Login
+
+  await page.goto(Utils.User_Details.url);
+  await login.performLoginActions(Utils.User_Details.name, Utils.User_Details.password);
 
  //Lonin validation
- await register.validateCorrectPage(); 
+ 
  await page.waitForLoadState('networkidle');
+ await register.validateCorrectPage();
  await page.screenshot({ path: 'screenshot0.png', fullPage: true });
 
 });
@@ -49,12 +50,12 @@ test.only('Publish add', async ({page}) => {
   
   
   await personal.publishButtonClick();
-  await assetLoc.selectType(Util.Appartment_Liecing.type);
+  await assetLoc.selectType(Utils.Appartment_Liecing.type);
 
-  await assetLoc.selectStatus(Util.Appartment_Liecing.status);
-  await assetLoc.selectCity(Util.Appartment_Liecing.city);
-  await assetLoc.selectStreet(Util.Appartment_Liecing.street);
-  await assetLoc.insertBuildingNum(Util.Appartment_Liecing.number);
+  await assetLoc.selectStatus(Utils.Appartment_Liecing.status);
+  await assetLoc.selectCity(Utils.Appartment_Liecing.city);
+  await assetLoc.selectStreet(Utils.Appartment_Liecing.street);
+  await assetLoc.insertBuildingNum(Utils.Appartment_Liecing.number);
   await assetLoc.nextBtn1();
   
   //Asset area
@@ -78,7 +79,7 @@ test.only('Publish add', async ({page}) => {
   await assetPayments.pickPrice('7000');
   await assetPayments.pickPaymentNum('10');
   await assetPayments.insertHC('100');
-  await assetPayments.insertTaxs('200');
+  await assetPayments.insertTaxes('200');
   await assetPayments.selectMonth("November");
   await assetPayments.setDay();
   await assetPayments.nextBtnToPic();
