@@ -9,8 +9,8 @@ exports.AssetPayments = class AssetPayments {
     this.taxs = page.locator("#ff_8_tax_asset");
     this.opendatePicker = page.locator('input[name="date_start"]');
     this.months = page.locator("select.flatpickr-monthDropdown-months");
-    this.days = page.$$(".flatpickr-day");
-    this.day = page.locator('.flatpickr-day[aria-label="November, 2024"]');
+    this.days = page.locator(".flatpickr-day").filter({hasText: "November 15, 2024"});
+    this.day = page.locator('.dayContainer .flatpickr-day').nth(20);
     this.nxtbtnForPic = page.locator('.ff-float-right.ff-btn.ff-btn-next.ff-btn-secondary').nth(3);
     this.prevButton = page.locator('.ff-btn.ff-btn-prev.ff-btn-secondary').nth(3);
   }
@@ -53,6 +53,7 @@ exports.AssetPayments = class AssetPayments {
         break;
       }
     }
+    //await this.credit.click();
 }
   
   

@@ -7,7 +7,7 @@ exports.AssetPersonalDetais = class AssetPersonalDetais{
         this.page = page;
         this.nameField = page.locator('#ff_8_name_full');
         this.phoneNum = page.locator('#ff_8_phone_number');
-        this.publishButton = page.locator('.ff-btn.ff-btn-submit.ff-btn-md.publish-asset.ff_btn_style');
+        this.publishBtn = page.getByText("פרסום הנכס");
 
     }
 
@@ -21,7 +21,11 @@ exports.AssetPersonalDetais = class AssetPersonalDetais{
     }
 
     async submitAd(){
-        await this.publishButton();
+        await this.page.evaluate(() => {
+            // Locate the form element and submit it
+            document.querySelector('form').submit();
+          });
+        
     }
 
 

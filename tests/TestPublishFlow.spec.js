@@ -10,30 +10,32 @@ const { AssetPayments } = require("../pages.js/AssetPaymentsPage");
 const { AssetPic } = require("../pages.js/AssetPicPage");
 const { AssetPersonalDetais } = require("../pages.js/AssetPersonaldetalsPage");
 const { Utils } = require("../fixtures/Utils");
+const { chromium } = require('playwright');
 
-
-test.only('Login to system', async ({ page }) => {
+test.beforeEach('Login to system', async ({ page }) => {
   
   const login = new Login(page);
-  const register = new Register(page);
-
-
-  //Login
-
   await page.goto(Utils.User_Details.url);
-  await login.performLoginActions(Utils.User_Details.name, Utils.User_Details.password);
-
- //Lonin validation
- 
- await page.waitForLoadState('networkidle');
- await register.validateCorrectPage();
- await page.screenshot({ path: 'screenshot0.png', fullPage: true });
+  await login.performLoginActions(Utils.User_Details.name, 
+    Utils.User_Details.password);
 
 });
+ 
+test('Validate login', async ({page}) => {
 
-test('Publish add', async ({page}) => {
+  const register = new Register(page);
 
+ //Lonin validatio
+  await page.waitForLoadState('networkidle');
+  await register.validateCorrectPage();
+  await page.screenshot({ path: 'screenshot0.png', fullPage: true });
+ 
+ 
+});
 
+test.only('Publish add', async ({page}) => {
+  test.slow();
+  const login = new Login(page);
   const personal = new PersonalPage(page);
   const assetLoc = new AssetLocation(page);
   const assetArea = new AssetArea(page);
@@ -42,13 +44,7 @@ test('Publish add', async ({page}) => {
   const assePic = new AssetPic(page);
   const assetPersonalDetais = new AssetPersonalDetais(page);
 
-
-
-
   // Asset location 
-
-  
-  
   await personal.publishButtonClick();
   await assetLoc.selectType(Utils.Appartment_Liecing.type);
 
@@ -70,7 +66,7 @@ test('Publish add', async ({page}) => {
   await assetArea.nextBtn2();
   
   //Asset features
-  await assetFeatures.pickFeature(Utils.Asset_Features.features);
+  await assetFeatures.pickFeature(page,Utils.Asset_Features.features);
   await assetFeatures.fillDescription(Utils.Asset_Features.description);
   await assetFeatures.featureNext();
   await page.waitForLoadState('networkidle');
@@ -84,13 +80,14 @@ test('Publish add', async ({page}) => {
   await assetPayments.setDay();
   await assetPayments.nextBtnToPic();
   
-  //Uploaling picture
+  // //Uploaling picture
   await assePic.uploadPicture(Utils.Asset_Picture.path);
-  await page.pause();
+  
 
   // //Personal details
-  // await assetPersonalDetais.insertName('Nissim Ariel');
-  // await assetPersonalDetais.insertPhone('0521234567');
-  // await assetPersonalDetais.submitAd();
+  await assetPersonalDetais.insertName(Utils.Personal_Details.name);
+  await assetPersonalDetais.insertPhone(Utils.Personal_Details.phone);
+  await assetPersonalDetais.submitAd();
+  
 
 });

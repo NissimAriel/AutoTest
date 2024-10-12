@@ -27,7 +27,7 @@ const Utils = {
     },
 
     Asset_Features: {
-        features: "מיזוג",
+        features: "מחסן",
         description: "buftiful appartment"
     },
 
@@ -42,7 +42,11 @@ const Utils = {
     Asset_Picture: {
         path: "/Users/nissimariel/Desktop/house.png"
     },
-    
+
+    Personal_Details: {
+        name: "Nissim Ariel",
+        phone: "0521234567"
+    }
 
 
 

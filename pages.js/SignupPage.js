@@ -12,12 +12,12 @@ exports.Register = class Register {
     this.disconnectBtn = page.locator('div[data-id="0b8fbbd"] span.elementor-button-text').nth(0);
   }
 
-  
-  
-  
   async validateCorrectPage() {
     await expect(this.disconnectBtn).toContainText('התנתק');
+  }
 
+  async logOut(){
+    await this.disconnectBtn.click();
   }
 }  
 
