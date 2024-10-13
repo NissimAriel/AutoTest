@@ -14,6 +14,7 @@ const { expect } = require("@playwright/test");
         this.secondPasswordTime = page.locator('#user_pass');
         this.connectButton2 = page.locator('#wp-submit');
         this.personalArea = page.locator('i.far.fa-user-circle');
+        this.homeBtn = page.locator('//img[@src="https://homme.co.il/wp-content/uploads/2023/06/Hom-e.webp"]').nth(0)
         }
     
 
@@ -26,6 +27,10 @@ const { expect } = require("@playwright/test");
       await this.connectButton.click();
       
       
+    }
+
+    async goToHome(){
+      await this.homeBtn.click();
     }
   }
     

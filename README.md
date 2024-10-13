@@ -1,8 +1,13 @@
 # E2E tests 
- 
+
+# Install playwright
+Run on terminal this command:
+npm init playwright@latest 
+
 # Running tests
 To run the tests you have to oprn new trminal enter command: 
-npx playwright test --headed
+npx playwright test --workers=1 --headed
+To avoid parallel running.
 
 # View Report
 Enter the terminal - npx playwright show-report

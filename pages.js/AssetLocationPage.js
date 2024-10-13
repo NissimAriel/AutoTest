@@ -35,6 +35,7 @@ exports.AssetLocation = class AssetLocation{
     }
 
     async insertBuildingNum(value){
+        await this.buildingNum.clear();
         await this.buildingNum.fill(value);
     }
 

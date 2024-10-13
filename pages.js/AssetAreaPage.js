@@ -40,6 +40,7 @@ exports.AssetArea = class AsseArea{
     }
 
     async floorsNum(value){
+        await this.floors.clear();
         await this.floors.fill(value);
     }
 
@@ -49,6 +50,7 @@ exports.AssetArea = class AsseArea{
     }
 
     async insertBuildArea(value){
+        await this.buildArea.clear();
         await this.buildArea.fill(value);
     }
 

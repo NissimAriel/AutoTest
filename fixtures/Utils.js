@@ -6,7 +6,7 @@ const Utils = {
         password: "tester123!@#qwe"
     },
     
-    Appartment_Liecing: {
+    Appartment_Detalis: {
         type: "דירת גן",
         status: "משופץ",
         city: "כרמיאל",
@@ -27,8 +27,8 @@ const Utils = {
     },
 
     Asset_Features: {
-        features: "מחסן",
-        description: "buftiful appartment"
+        features: "משופצת",
+        description: "beautiful apartment"
     },
 
     Asset_Payments: {
@@ -46,7 +46,22 @@ const Utils = {
     Personal_Details: {
         name: "Nissim Ariel",
         phone: "0521234567"
+    },
+
+    Ad_Details: {
+        fullAddress: "כרמיאל 26",
+        adPrice: "₪7,000",
+        stautus: " משופץ",
+        area: " 120",
+        terraces: " 2",
+        payments: " 10",
+        tax: "ארנונה (לחודשיים): ₪200",
+        homeCommetee: "ועד בית (לחודש): ₪100",
+        park: " 1",
+        garden: " 50",
+
     }
+
 
 
 

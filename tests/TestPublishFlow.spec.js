@@ -9,8 +9,9 @@ const { AssetFeatures } = require("../pages.js/AssetFeaturesPage");
 const { AssetPayments } = require("../pages.js/AssetPaymentsPage");
 const { AssetPic } = require("../pages.js/AssetPicPage");
 const { AssetPersonalDetais } = require("../pages.js/AssetPersonaldetalsPage");
+const { AdValidation } = require("../pages.js/AdValidationPage");
 const { Utils } = require("../fixtures/Utils");
-const { chromium } = require('playwright');
+
 
 test.beforeEach('Login to system', async ({ page }) => {
   
@@ -21,7 +22,7 @@ test.beforeEach('Login to system', async ({ page }) => {
 
 });
  
-test('Validate login', async ({page}) => {
+test('Test 1 - Validate login', async ({page}) => {
 
   const register = new Register(page);
 
@@ -33,8 +34,8 @@ test('Validate login', async ({page}) => {
  
 });
 
-test.only('Publish add', async ({page}) => {
-  test.slow();
+test('Test 2 - Publish add', async ({page}) => {
+  
   const login = new Login(page);
   const personal = new PersonalPage(page);
   const assetLoc = new AssetLocation(page);
@@ -45,13 +46,15 @@ test.only('Publish add', async ({page}) => {
   const assetPersonalDetais = new AssetPersonalDetais(page);
 
   // Asset location 
-  await personal.publishButtonClick();
-  await assetLoc.selectType(Utils.Appartment_Liecing.type);
 
-  await assetLoc.selectStatus(Utils.Appartment_Liecing.status);
-  await assetLoc.selectCity(Utils.Appartment_Liecing.city);
-  await assetLoc.selectStreet(Utils.Appartment_Liecing.street);
-  await assetLoc.insertBuildingNum(Utils.Appartment_Liecing.number);
+  await login.goToHome();
+  await personal.publishButtonClick();
+  await assetLoc.selectType(Utils.Appartment_Detalis.type);
+
+  await assetLoc.selectStatus(Utils.Appartment_Detalis.status);
+  await assetLoc.selectCity(Utils.Appartment_Detalis.city);
+  await assetLoc.selectStreet(Utils.Appartment_Detalis.street);
+  await assetLoc.insertBuildingNum(Utils.Appartment_Detalis.number);
   await assetLoc.nextBtn1();
   
   //Asset area
@@ -87,7 +90,34 @@ test.only('Publish add', async ({page}) => {
   // //Personal details
   await assetPersonalDetais.insertName(Utils.Personal_Details.name);
   await assetPersonalDetais.insertPhone(Utils.Personal_Details.phone);
-  await assetPersonalDetais.submitAd();
+  //await assetPersonalDetais.submitAd();
+
+});
+
+test('Test 3 - Validate Ad', async ({page}) =>{
+
+  const register = new Register(page);
+  const validate = new AdValidation(page);
+  
+  //await register.enterPersonalArea();
+  await register.enterFirstAd();
+  await validate.validAddress(Utils.Ad_Details.fullAddress);
+  await validate.validPrice(Utils.Ad_Details.adPrice);
+  await validate.validType(Utils.Appartment_Detalis.type);
+  await validate.validRooms(Utils.Asset_Area.rooms);
+  await validate.validFloorOf(Utils.Asset_Area.floors);
+  await validate.validDesc(Utils.Asset_Features.description);
+  await validate.valiStatus(Utils.Ad_Details.stautus);
+  await validate.validArea(Utils.Ad_Details.area);
+  await validate.validTeracces(Utils.Ad_Details.terraces);
+  await validate.validPayments(Utils.Ad_Details.payments);
+  await validate.validTax(Utils.Ad_Details.tax);
+  await validate.validHomeCom(Utils.Ad_Details.homeCommetee);
+  await validate.validParksNum(Utils.Ad_Details.park);
+  await validate.validGardenArea(Utils.Ad_Details.garden);
+  await validate.validFeatures(Utils.Asset_Features.features);
+  await validate.validName(Utils.Personal_Details.name);
+  await validate.validPhone(Utils.Personal_Details.phone);
   
 
 });

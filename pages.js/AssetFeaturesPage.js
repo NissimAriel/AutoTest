@@ -11,13 +11,15 @@ exports.AssetFeatures = class AssetFeatures{
 
     async pickFeature(page, labelText) {
         const checkboxLabel = await page.locator(`xpath=//label[contains(@aria-label, '${labelText}')]`);
+        
         if (await checkboxLabel.count() > 0) {
-            await checkboxLabel.click(); // Clicks on the label to check the box
+            await checkboxLabel.dblclick(); // Clicks on the label to check the box
         }        
     }
 
     async fillDescription(value){
-        this.addDetails.fill(value);
+        await this.addDetails.clear();
+        await this.addDetails.fill(value);
 
     }
 

@@ -16,18 +16,22 @@ exports.AssetPayments = class AssetPayments {
   }
 
   async pickPaymentNum(value) {
+    await this.credit.clear();
     await this.credit.fill(value);
   }
 
   async pickPrice(value) {
+    await this.price.clear();
     await this.price.fill(value);
   }
 
   async insertHC(value) {
+    await this.houseCommitte.clear();
     await this.houseCommitte.fill(value);
   }
 
   async insertTaxes(value) {
+    await this.taxs.clear();
     await this.taxs.fill(value);
   }
 
@@ -48,12 +52,12 @@ exports.AssetPayments = class AssetPayments {
       // Select each month by value
       await this.months.selectOption({ value: i.toString() });
 
-      // If the current index matches the target month index, log and break
+      // If the current index matches the target month index break
       if (i === monthIndex) {
         break;
       }
     }
-    //await this.credit.click();
+    
 }
   
   
