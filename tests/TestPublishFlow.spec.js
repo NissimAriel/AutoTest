@@ -13,24 +13,32 @@ const { AdValidation } = require("../pages.js/AdValidationPage");
 const { Utils } = require("../fixtures/Utils");
 
 
-test.beforeEach('Login to system', async ({ page }) => {
+test.describe('Tests', () => {
+
+test.beforeEach(async ({ page }) => {
   
   const login = new Login(page);
   await page.goto(Utils.User_Details.url);
   await login.performLoginActions(Utils.User_Details.name, 
     Utils.User_Details.password);
+  
 
 });
- 
-test('Test 1 - Validate login', async ({page}) => {
 
+test.afterEach(async({page}, testInfo) => {
+  await page.waitForTimeout(500);
+  await page.screenshot({path: `screenshots/${testInfo.title}_${testInfo.status}.jpg`})
+})
+
+test('Test 1 - Validate login', async ({page}) => {
+  
   const register = new Register(page);
 
  //Lonin validatio
   await page.waitForLoadState('networkidle');
   await register.validateCorrectPage();
   await page.screenshot({ path: 'screenshot0.png', fullPage: true });
- 
+  
  
 });
 
@@ -121,3 +129,5 @@ test('Test 3 - Validate Ad', async ({page}) =>{
   
 
 });
+
+})

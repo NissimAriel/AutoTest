@@ -1,20 +1,22 @@
 const { expect } = require("@playwright/test");
 
+const {Locators} = require("../fixtures/Locators")
+
 exports.AssetArea = class AsseArea{
 
     constructor(page){
 
         this.page = page;
-        this.floor = page.locator('#ff_8_floor'); //not a dropdown
-        this.roomNum = page.locator('#ff_8_room_num');
-        this.parkings = page.locator('#ff_8__parking');
-        this.elavator = page.locator('#ff_8_elevator_1');
-        this.floors = page.locator('#ff_8_floors');
-        this.terraces = page.locator('#ff_8_terrace');
-        this.buildArea = page.locator('#ff_8_built_mr');
-        this.gardenArea = page.locator('#ff_8_garden_mr') //not a dropdown
-        this.areaNextBtn = page.locator('//*[@id="fluentform_8"]/fieldset/div/div[2]/div[2]/div[5]/button[2]');
-        this.areaPrevBtn = page.locator('//*[@id="fluentform_8"]/fieldset/div/div[2]/div[2]/div[5]/button[1]');
+        this.floor = page.locator(Locators.floor); //not a dropdown
+        this.roomNum = page.locator(Locators.roomNum);
+        this.parkings = page.locator(Locators.parkings);
+        this.elavator = page.locator(Locators.elavator);
+        this.floors = page.locator(Locators.floors);
+        this.terraces = page.locator(Locators.terraces);
+        this.buildArea = page.locator(Locators.buildArea);
+        this.gardenArea = page.locator(Locators.gardenArea) //not a dropdown
+        this.areaNextBtn = page.locator(Locators.areaNextBtn);
+        this.areaPrevBtn = page.locator(Locators.areaPrevBtn);
 
 
     }
