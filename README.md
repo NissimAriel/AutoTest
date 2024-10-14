@@ -1,5 +1,9 @@
 # E2E tests 
 
+# Install Node.js NPM on your machine
+Go to - https://nodejs.org/en/download/package-manager
+Select the correct package accourding to your machine, download and install it.
+
 # Install playwright
 Run on terminal this command:
 npm init playwright@latest 
