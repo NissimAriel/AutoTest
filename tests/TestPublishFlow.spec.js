@@ -16,12 +16,14 @@ const { Utils } = require("../fixtures/Utils");
 test.describe('Tests', () => {
 
 test.beforeEach(async ({ page }) => {
+  test.step('more details in thr repport', async () => {
   
   const login = new Login(page);
   await page.goto(Utils.User_Details.url);
   await login.performLoginActions(Utils.User_Details.name, 
     Utils.User_Details.password);
-  
+
+})
 
 });
 
